@@ -19,7 +19,7 @@ public class AppTest {
 
 	@BeforeTest
 	public void beforetest() {
-		WebDriverManager.chromedriver().setup();
+		WebDriverManager.chromedriver().linux().setup();
 	}
 
 	@org.testng.annotations.Test
