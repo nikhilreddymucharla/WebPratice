@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeSuite;
  * Unit test for simple App.
  */
 public class AppTest {
+	
 	private WebDriver driver;
 
     @BeforeSuite
@@ -31,9 +32,9 @@ public class AppTest {
 	@org.testng.annotations.Test
 	public void m1() throws MalformedURLException {
 		
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@title='Search']")));
-		driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("HI google");
+		//WebDriverWait wait = new WebDriverWait(driver,30);
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@title='Search']")));
+		//driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("HI google");
 		driver.findElement(By.xpath("(//input[@value='Google Search' and @aria-label='Google Search'])[2]")).click();
 		
 		System.out.println("The Test cases are executed******************************");
