@@ -1,15 +1,15 @@
 package com.web.Pratice;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Timeouts;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 /**
  * Unit test for simple App.
@@ -17,22 +17,22 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class AppTest {
 	private WebDriver driver;
 
-	@BeforeTest
-	public void beforetest() {
-		WebDriverManager.chromedriver().linux().setup();
-	}
-
+    @BeforeSuite
+    public void setUp() throws MalformedURLException {
+        DesiredCapabilities capability = DesiredCapabilities.chrome();
+        driver = new RemoteWebDriver(new URL("http://selenium-ch:4444/wd/hub"), capability);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+    }
 	@org.testng.annotations.Test
-	public void m1() {
-		driver = new ChromeDriver();
+	public void m1() throws MalformedURLException {
+		
 		driver.get("https://google.com");
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//div[@class='pR49Ae gsfi']")).sendKeys("HI google");
 
 	}
 
-	@AfterTest
+	@AfterSuite
 	public void afterTest() {
 		if (driver != null) {
 			driver.quit();
