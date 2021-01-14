@@ -28,7 +28,10 @@ public class AppTest {
 	public void m1() throws MalformedURLException {
 		
 		driver.get("https://google.com");
-		driver.findElement(By.xpath("//div[@class='pR49Ae gsfi']")).sendKeys("HI google");
+		driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("HI google");
+		driver.findElement(By.xpath("(//input[@value='Google Search' and @aria-label='Google Search'])[2]")).click();
+		
+		System.out.println("The Test cases are executed******************************");
 
 	}
 
