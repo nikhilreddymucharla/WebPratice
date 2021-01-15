@@ -2,7 +2,9 @@ package com.web.Pratice;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.concurrent.TimeUnit;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -47,6 +49,8 @@ public class AppTest {
 			searchBar.click();
 			searchBar.sendKeys("Experitest");
 			searchBar.sendKeys(Keys.ENTER);
+			List<String> collect = driver.findElements(By.xpath("//h3")).stream().map(z->z.getText()).collect(Collectors.toList());
+			collect.forEach(System.out::println);
 		}
 	}
 
