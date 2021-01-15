@@ -51,6 +51,7 @@ public class AppTest {
 			searchBar.sendKeys(Keys.ENTER);
 			List<String> collect = driver.findElements(By.xpath("//h3")).stream().map(z->z.getText()).collect(Collectors.toList());
 			collect.forEach(System.out::println);
+			System.out.println("Done with the execution");
 		}
 	}
 
