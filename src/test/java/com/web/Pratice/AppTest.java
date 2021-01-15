@@ -42,17 +42,10 @@ public class AppTest {
 
 	@Test
 	public void browserTestGoogleSearch() {
-		for (int i = 0; i < 7; i++) {
-			driver.get("https://www.google.com");
-			new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
-			WebElement searchBar = driver.findElement(By.name("q"));
-			searchBar.click();
-			searchBar.sendKeys("Experitest");
-			searchBar.sendKeys(Keys.ENTER);
-			List<String> collect = driver.findElements(By.xpath("//h3")).stream().map(z->z.getText()).collect(Collectors.toList());
-			collect.forEach(System.out::println);
-			System.out.println("Done with the execution");
-		}
+			driver.get("https://qe.acto.com/auth/sso");
+			new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'sign in with email')]")));
+			driver.findElement(By.xpath("//span[contains(text(),'sign in with email')]")).click();
+			
 	}
 
 	@AfterTest
