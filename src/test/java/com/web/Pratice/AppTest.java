@@ -37,12 +37,15 @@ public class AppTest {
 		//dc.setCapability("testName", "Quick Start Chrome Browser Demo");
 		//dc.setCapability("accessKey", ACCESS_KEY);
 		//dc.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-		driver = new RemoteWebDriver(new URL("https://cloud.seetest.io/wd/hub"), dc);
+		//driver = new RemoteWebDriver(new URL("https://cloud.seetest.io/wd/hub"), dc);
+		driver = new RemoteWebDriver(new URL("http://selenium-ch:4444/wd/hub"), dc);
+		driver.get("https://qe.acto.com/auth/sso");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 	}
 
 	@Test
 	public void browserTestGoogleSearch() {
-			driver.get("https://qe.acto.com/auth/sso");
 			new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'sign in with email')]")));
 			driver.findElement(By.xpath("//span[contains(text(),'sign in with email')]")).click();
 			
